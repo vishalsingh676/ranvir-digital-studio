@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ranvir Digital Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #0e0e0e;
+      color: #eee;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* NAVIGATION */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 18px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10000;
+      box-sizing: border-box;
+    }
+
+    nav h2 {
+      font-weight: 600;
+      letter-spacing: 1px;
+      flex-shrink: 0;
+      color: #fff;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    nav ul li a:hover {
+      color: #d32f2f;
+    }
+
+    /* Hamburger menu button (hidden on desktop) */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      width: 24px;
+      height: 18px;
+      justify-content: center;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Drop-down mobile menu */
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: rgba(0, 0, 0, 0.9);
+      position: absolute;
+      top: 64px;
+      right: 50px;
+      border-radius: 6px;
+      padding: 10px 20px;
+      box-shadow: 0 0 15px #d32f2f;
+      z-index: 9999;
+    }
+
+    .mobile-menu li {
+      padding: 12px 0;
+      border-bottom: 1px solid #333;
+      font-size: 16px;
+    }
+
+    .mobile-menu li:last-child {
+      border: none;
+    }
+
+    .mobile-menu li a {
+      color: white;
+      display: block;
+    }
+
+    .mobile-menu li a:hover {
+      color: #d32f2f;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      height: 100vh;
+      background: url('https://www.akkaasistudio.com/web/image/971-62d9fc99/knowledge_cover.webp')
+        center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 50px;
+      position: relative;
+      color: #eee;
+      overflow: hidden;
+    }
+
+    /* Lens flare gradient overlay for hero */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at 20% 40%,
+        rgba(211, 47, 47, 0.3),
+        rgba(0, 0, 0, 0.7) 80%
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 500px;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 54px;
+      font-weight: 700;
+      line-height: 1.1;
+      color: #ffffff; /* Bright red highlight */
+      text-shadow:  0 0 20px #ffffff;
+      margin: 0;
+    }
+
+    .hero p {
+      margin: 20px 0 10px;
+      font-size: 20px;
+      opacity: 0.9;
+      color: #fff;
+      text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .since {
+      font-size: 18px;
+      margin-bottom: 25px;
+      font-weight: 500;
+      color: #ffffff;
+      text-shadow: 0 0 5px #ffffff;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background: #d32f2f;
+      border-radius: 6px;
+      font-weight: 600;
+      color: white;
+      user-select: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      background: #b71c1c;
+      outline: none;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 50px;
+      max-width: 1300px;
+      margin: auto;
+      box-sizing: border-box;
+    }
+
+    section h2 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    section p.sub {
+      opacity: 0.7;
+      margin-bottom: 40px;
+      color: #ccc;
+    }
+
+    /* SERVICES */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+    }
+
+    .service-box {
+      padding: 25px;
+      background: #161616;
+      border-radius: 6px;
+      border: 1px solid #242424;
+      transition: border-color 0.3s;
+      user-select: none;
+    }
+
+    .service-box:hover {
+      border-color: #d32f2f;
+      cursor: default;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 12px;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      user-select: none;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* LIGHTBOX */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      cursor: zoom-out;
+    }
+
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+    }
+
+    /* ABOUT */
+    .about {
+      display: flex;
+      flex-direction: row;
+      gap: 40px;
+      align-items: center;
+      color: #ddd;
+    }
+
+    .about img {
+      width: 380px;
+      border-radius: 8px;
+      user-select: none;
+    }
+
+    /* CONTACT */
+    .contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      color: #ddd;
+    }
+
+    .contact h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .contact p,
+    .contact a {
+      line-height: 1.6;
+      color: #ccc;
+      user-select: text;
+    }
+
+    .contact a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* WhatsApp icon link style */
+    .whatsapp-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #25D366;
+      font-weight: 600;
+      text-decoration: none;
+      user-select: none;
+    }
+
+    .whatsapp-link:hover {
+      text-decoration: underline;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.6;
+      color: #aaa;
+    }
+
+    /* MOBILE FIXES */
+    @media (max-width: 800px) {
+      nav {
+        padding: 15px 25px;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-menu {
+        right: 25px;
+        top: 56px;
+      }
+
+      .hero {
+        padding-left: 25px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .contact {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <h2>Ranvir Digital Studio</h2>
+
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <!-- Hamburger -->
+    <div class="menu-toggle" aria-label="Toggle menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Mobile menu -->
+    <ul class="mobile-menu" aria-label="Mobile navigation menu">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Ranvir Digital Studio</h1>
+      <p>Capturing Stories Through Light & Lens</p>
+      <div class="since">Since 1982</div>
+      <a href="#gallery" class="btn">View Gallery</a>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <p class="sub">Professional photography & cinematography for every occasion.</p>
+
+    <div class="services">
+      <div class="service-box">Candid Photography</div>
+      <div class="service-box">Pre-Wedding Shoots</div>
+      <div class="service-box">Wedding Shoots</div>
+      <div class="service-box">Videos & Films</div>
+      <div class="service-box">Product & Commercial</div>
+      <div class="service-box">Studio Portraits</div>
+      <div class="service-box">Events & Functions</div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <!-- GALLERY -->
+<section id="gallery">
+  <h2>Featured Gallery</h2>
+  <p class="sub">A glimpse of our visual storytelling.</p>
+
+  <!-- Gallery Menu -->
+  <div class="gallery-menu" style="margin-bottom:20px;">
+    <a href="#prewedding">Pre-Wedding</a> |
+    <a href="#wedding">Wedding</a> |
+    <a href="#birthday">Birthday & Events</a>
+  </div>
+
+  <!-- Pre-Wedding Section -->
+  <section id="prewedding">
+    <h3>Pre-Wedding Shoots</h3>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800" alt="Pre-Wedding Image 1" />
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800" alt="Pre-Wedding Image 2" />
+	  <img src="https://onehorizonproductions.com/wp-content/uploads/2023/05/OHP-03325-scaled.webp" alt="Pre-Wedding Image 3" />
+    </div>
+  </section>
+
+  <!-- Wedding Section -->
+  <section id="wedding">
+    <h3>Wedding Shoots</h3>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1542144612-1baf1c65af56?auto=format&fit=crop&w=800" alt="Wedding Image 1" />
+      <img src="https://images.unsplash.com/photo-1504208434309-cb69f4fe52b0?auto=format&fit=crop&w=800" alt="Wedding Image 2" />
+      <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800" alt="Wedding Image 3" />
+    </div>
+  </section>
+
+  <!-- Birthday & Events Section -->
+  <section id="birthday">
+    <h3>Birthday & Events</h3>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800" alt="Birthday Event Image 1" />
+	  <img src="https://onehorizonproductions.com/wp-content/uploads/2023/05/OHP-03325-scaled.webp" alt="Pre-Wedding Image 3" />
+	  <img src="https://drive.google.com/uc?export=view&id=1ZRO0MnXMa829uDXyD5w1mpyrZvfNS0De" alt="image 3" />
+      <!-- Add more images here -->
+    </div>
+  </section>
+</section>
+
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-modal="true" tabindex="-1">
+    <img src="" alt="Enlarged image" />
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p class="sub">Delhi’s trusted photography & videography studio.</p>
+
+    <div class="about">
+      <img
+        src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=900"
+        alt="Studio environment"
+      />
+      <p>
+        Ranvir Digital Studio is a professional photography & cinematic film
+        studio based in Delhi. We specialize in candid wedding stories, creative
+        portraits, product shoots, commercial campaigns, and event coverage.
+        <br /><br />
+        Our goal is simple: to create timeless visuals that feel authentic,
+        emotional, and beautifully crafted.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p class="sub">Reach us for bookings, collaborations, or queries.</p>
+
+    <div class="contact">
+      <div>
+        <h3>Studio Address</h3>
+        <p>
+          Ranvir Digital Studio<br />
+          Shop no.45, LSC, Super Market,<br />
+          Saraswati Vihar, Delhi, India
+        </p>
+
+        <h3>Phone</h3>
+        <p>
+          <a href="https://wa.me/919811754596" target="_blank" class="whatsapp-link">
+                    <i class="fab fa-whatsapp" style="margin-right:6px;"></i>
+                    9811754596 (WhatsApp)
+                </a><br>
+                8700713252
+        </p>
+		<h3>Instagram</h3>
+      <p>
+        <a href="https://www.instagram.com/ranvirdigitalstudio/" target="_blank" style="color:#fff; text-decoration:none;">
+          <i class="fab fa-instagram" style="margin-right:6px; color:#E1306C;"></i>
+          @ranvirdigitalstudio
+        </a>
+      </p>
+
+        <h3>Email</h3>
+        <p>ranveerdigitalstudio@gmail.com</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2025 Ranvir Digital Studio — All Rights Reserved</footer>
+
+  <script>
+    // Hamburger menu toggle
+    const menuToggle = document.querySelector(".menu-toggle");
+    const mobileMenu = document.querySelector(".mobile-menu");
+
+    menuToggle.addEventListener("click", () => {
+      mobileMenu.style.display =
+        mobileMenu.style.display === "flex" ? "none" : "flex";
+    });
+
+    // Accessibility: toggle menu on keyboard (Enter/Space)
+    menuToggle.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll(".mobile-menu a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.style.display = "none";
+      });
+    });
+
+    // Lightbox functionality
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = lightbox.querySelector("img");
+
+    document.querySelectorAll(".gallery-grid img").forEach((img) => {
+      img.onclick = () => {
+        lightboxImg.src = img.src;
+        lightbox.style.display = "flex";
+        lightbox.focus();
+      };
+    });
+
+    lightbox.onclick = () => {
+      lightbox.style.display = "none";
+      lightboxImg.src = "";
+    };
+
+    // Close lightbox on ESC key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && lightbox.style.display === "flex") {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+      }
+    });
+  </script>
+</body>
+</html>
